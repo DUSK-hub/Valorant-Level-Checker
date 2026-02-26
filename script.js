@@ -4,7 +4,7 @@
 ═══════════════════════════════════════════════════════ */
 
 const STORAGE_KEY = "accountTracker_accounts";
-const MS_24H      = 24 * 60 * 60 * 1000;
+const MS_24H      = 20 * 60 * 60 * 1000;
 
 /* ── DOM refs ──────────────────────────────────────── */
 const addBtn      = document.getElementById("addBtn");
@@ -204,7 +204,7 @@ function handleDone(id, checked, rowEl, timerEl) {
 ═══════════════════════════════════════════════════════ */
 function startTimer(id, compTime, timerEl, rowEl, cb) {
   function tick() {
-    const remaining = MS_24H - (Date.now() - compTime);
+    const remaining = MS_H - (Date.now() - compTime);
     if (remaining <= 0) {
       clearInterval(timers[id]);
       delete timers[id];
