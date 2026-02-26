@@ -333,3 +333,55 @@ input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
 ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
 
 ::selection { background: var(--amber-glow); color: var(--amber); }
+
+
+/* ── DUSK Watermark ─────────────────────────── */
+body::before {
+  content: 'DUSK';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-25deg);
+  font-family: var(--mono);
+  font-size: clamp(100px, 22vw, 280px);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(232, 160, 32, 0.055);
+  background: linear-gradient(
+    135deg,
+    rgba(232, 160, 32, 0.07) 0%,
+    rgba(232, 160, 32, 0.03) 40%,
+    rgba(232, 160, 32, 0.08) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  white-space: nowrap;
+  animation: duskPulse 6s ease-in-out infinite;
+  text-shadow:
+    0 0 80px rgba(232, 160, 32, 0.04),
+    0 0 160px rgba(232, 160, 32, 0.02);
+  filter: blur(0.4px);
+}
+
+@keyframes duskPulse {
+  0%, 100% {
+    opacity: 0.7;
+    filter: blur(0.4px);
+    -webkit-text-stroke: 1.5px rgba(232, 160, 32, 0.055);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(0px);
+    -webkit-text-stroke: 1.5px rgba(232, 160, 32, 0.10);
+  }
+}
+
+/* Make sure app content sits above the watermark */
+.app {
+  position: relative;
+  z-index: 1;
+}
